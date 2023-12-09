@@ -49,8 +49,7 @@ const nftsForContract1 = [
 export async function uploadJSONtoIPFS(obj: any) {
   const res = await lighthouse.uploadBuffer(
     Buffer.from(JSON.stringify(obj), "utf-8"),
-    LIGHTHOUSE_API_KEY,
-    "application/json"
+    process.env.LIGHTHOUSE_API_KEY || ""
   );
   return res.data;
 }
@@ -72,7 +71,9 @@ async function main() {
 
   // mint some nfts for testing
   for (const nft of nftsForContract1) {
-    const { Hash: cid } = await uploadJSONToIPFS(nft.metadata);
+    const { Hash: cid } = await uploadJSONtoIPFS(nft.metadata);
+
+    console.log(`Minting Land NFT for ${nft.account} with CID ${cid}`);
 
     await nftContract1.write.safeMint([
       nft.account,
