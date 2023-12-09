@@ -223,13 +223,25 @@ export async function uploadJSONtoIPFS(obj: any) {
   return res.data;
 }
 
+async function wait(time: number) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, time);
+  });
+}
+
 async function main() {
   const nftContract1 = await hre.viem.deployContract("NFTContract1");
+  await wait(1000);
   const nftContract2 = await hre.viem.deployContract("NFTContract2");
+  await wait(1000);
   const nftContract3 = await hre.viem.deployContract("NFTContract3");
+  await wait(1000);
   const nftContract4 = await hre.viem.deployContract("NFTContract4");
+  await wait(1000);
   const nftContract5 = await hre.viem.deployContract("NFTContract5");
+  await wait(1000);
   const nftContract6 = await hre.viem.deployContract("NFTContract6");
+  await wait(1000);
 
   console.log("NFTContract1 deployed to:", nftContract1.address);
   console.log("NFTContract2 deployed to:", nftContract2.address);
@@ -250,6 +262,7 @@ async function main() {
       nft.length,
       nft.width,
     ]);
+    await wait(1000);
   }
 
   for (const nft of nftsForContract2) {
@@ -258,6 +271,7 @@ async function main() {
     console.log(`Minting Land NFT for ${nft.account} with CID ${cid}`);
 
     await nftContract2.write.safeMint([nft.account, cid]);
+    await wait(1000);
   }
 
   let j = 0;
@@ -268,9 +282,11 @@ async function main() {
     console.log(`Minting Land NFT for ${nft.account} with CID ${cid}`);
 
     await nftContract3.write.safeMint([nft.account, cid]);
+    await wait(1000);
 
     for (let i = 0; i < nft.numberOfSignUps; i++) {
       await nftContract3.write.signUp([BigInt(j)]);
+      await wait(1000);
     }
 
     j++;
@@ -282,6 +298,7 @@ async function main() {
     console.log(`Minting Land NFT for ${nft.account} with CID ${cid}`);
 
     await nftContract4.write.safeMint([nft.account, cid, nft.roommate]);
+    await wait(1000);
   }
 
   for (const nft of nftsForContract5) {
@@ -290,9 +307,11 @@ async function main() {
     console.log(`Minting Land NFT for ${nft.account} with CID ${cid}`);
 
     await nftContract5.write.safeMint([nft.account, cid]);
+    await wait(1000);
 
     if (nft.opened) {
       await nftContract5.write.open([nft.tokenId]);
+      await wait(1000);
     }
   }
 
@@ -302,9 +321,11 @@ async function main() {
     console.log(`Minting Land NFT for ${nft.account} with CID ${cid}`);
 
     await nftContract6.write.safeMint([nft.account, cid]);
+    await wait(1000);
 
     if (nft.drunk) {
       await nftContract6.write.drink([nft.tokenId]);
+      await wait(1000);
     }
   }
 }

@@ -11,8 +11,7 @@ const config: HardhatUserConfig = {
       url: process.env.MANTLE_RPC_URL,
       accounts: [process.env.PRIVATE_KEY || ""],
     },
-    }
-  }
+  },
 };
 
 export default config;
