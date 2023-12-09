@@ -18,7 +18,7 @@ contract NFTContract1 is ERC721, ERC721URIStorage, Ownable {
         string memory uri,
         uint256 length,
         uint256 width
-    ) public onlyOwner {
+    ) public {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);

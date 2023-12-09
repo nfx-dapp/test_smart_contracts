@@ -12,11 +12,7 @@ contract NFTContract4 is ERC721, ERC721URIStorage, Ownable {
 
     constructor() ERC721("Foundation Rooms", "FRT") Ownable(msg.sender) {}
 
-    function safeMint(
-        address to,
-        string memory uri,
-        address roomMate
-    ) public onlyOwner {
+    function safeMint(address to, string memory uri, address roomMate) public {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
