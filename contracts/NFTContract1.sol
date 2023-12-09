@@ -11,7 +11,7 @@ contract NFTContract1 is ERC721, ERC721URIStorage, Ownable {
     mapping(uint256 => uint256) public lengths;
     mapping(uint256 => uint256) public widths;
 
-    constructor() ERC721("Every Garden", "EGT") Ownable(msg.sender) {}
+    constructor() ERC721("EverGarden", "EGT") Ownable(msg.sender) {}
 
     function safeMint(
         address to,
